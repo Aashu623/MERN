@@ -1,6 +1,8 @@
 const catchAsyncErrors = require('../middleware/catchAsyncErrors');
 const stripe = require('stripe');
 
+
+//PROCESS PAYMENT
 exports.processPayment = catchAsyncErrors(async (req, res, next) => {
     console.log("Procespayment started")
     const myPayment = await stripe.paymentIntents.create({
