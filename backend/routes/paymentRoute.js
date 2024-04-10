@@ -4,5 +4,5 @@ const { isAuthenticatedUser } = require('../middleware/auth');
 const { processPayment, sendStripeApiKey } = require('../controllers/paymentControllers');
 
 router.route("/payment/process").post(isAuthenticatedUser, processPayment);
-router.route('/stripeapikey').get(isAuthenticatedUser, sendStripeApiKey);
+router.route('/stripeapikey').get(sendStripeApiKey);
 module.exports = router;
