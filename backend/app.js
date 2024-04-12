@@ -7,10 +7,12 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const errorMiddleware = require('./middleware/error')
 const path = require('path')
+
 // config
 if (process.env.NODE_ENV !== "PRODUCTION") {
     require("dotenv").config({ path: 'backend/config/config.env' })
 }
+
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
