@@ -12,12 +12,8 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
     require("dotenv").config({ path: 'backend/config/config.env' })
 }
 
-const corsOptions = {
-    origin: 'https://mernfrontend-tau.vercel.app',
-    credentials: true
-}
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
