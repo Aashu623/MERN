@@ -24,10 +24,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 
-app.use((req, res, next) => {
-    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-    next();
-});
+// app.use((req, res, next) => {
+//     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+//     next();
+// });
 
 
 //Route Imports
