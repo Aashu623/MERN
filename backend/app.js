@@ -13,7 +13,11 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 }
 
 
-app.use(cors());
+
+app.use(cors({
+    origin: 'https://mernfrontend-tau.vercel.app',
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
