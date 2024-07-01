@@ -7,7 +7,7 @@ const sendToken = (user, statusCode, res) => {
             Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
         ),
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+        secure: true, // Use secure cookies in production
         sameSite: 'None' // Ensures the cookie is sent in cross-site requests
     };
 
