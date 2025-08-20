@@ -6,10 +6,11 @@ const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const errorMiddleware = require("./middleware/error");
 const path = require("path");
+const { clerkClient } = require('@clerk/clerk-sdk-node');
 
 // config
 if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config({ path: "backend/config/config.env" });
+  require("dotenv").config();
 }
 
 const allowedOrigins = [
@@ -45,12 +46,12 @@ app.use(fileUpload());
 
 //Route Imports
 const product = require("./routes/productRoute");
-const user = require("./routes/userRoute");
+const clerkUser = require("./routes/clerkUserRoute");
 const order = require("./routes/orderRoute");
 const payment = require("./routes/paymentRoute");
 
 app.use("/api/v1", product);
-app.use("/api/v1", user);
+app.use("/api/v1", clerkUser);
 app.use("/api/v1", order);
 app.use("/api/v1", payment);
 

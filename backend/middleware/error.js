@@ -16,16 +16,16 @@ module.exports = (err, req, res, next) => {
         err = new ErrorHandler(message, 400);
     }
 
-    //Wrong JWT error
-    if (err.name === "JsonWebTokenError") {
-        const message = `Json Web Token is invalid, Try again`;
-        err = new ErrorHandler(message, 400);
+    //Clerk authentication error
+    if (err.name === "ClerkError" || err.message?.includes("Clerk")) {
+        const message = `Authentication failed. Please try again.`;
+        err = new ErrorHandler(message, 401);
     }
 
-    //JWT expire error
-    if (err.name === "TokenExpiredError") {
-        const message = `Json Web Token is Expired, Try again`;
-        err = new ErrorHandler(message, 400);
+    //Invalid session token error
+    if (err.message?.includes("Invalid or expired session")) {
+        const message = `Session expired. Please sign in again.`;
+        err = new ErrorHandler(message, 401);
     }
 
     res.status(err.statusCode).json({
