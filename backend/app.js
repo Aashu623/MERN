@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const errorMiddleware = require("./middleware/error");
 const path = require("path");
-const { clerkClient } = require('@clerk/clerk-sdk-node');
+const { clerkClient } = require("@clerk/clerk-sdk-node");
 
 // config
 if (process.env.NODE_ENV !== "production") {
@@ -16,6 +16,7 @@ if (process.env.NODE_ENV !== "production") {
 const allowedOrigins = [
   "https://mernfrontend-tau.vercel.app",
   "https://www.brahmiacademy.com",
+  "https://www.brahmiacademy.com/",
   "https://brahmiacademy.com",
   "http://localhost:3000",
 ];
