@@ -2,14 +2,21 @@
     "version": 2,
     "builds": [
         {
-            "src": "*.js",
-            "use": "@vercel / node"
+            "src": "brahmi-frontend/package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "dist"
+            }
         }
     ],
     "routes": [
         {
+            "src": "/api/(.*)",
+            "dest": "/backend/$1"
+        },
+        {
             "src": "/(.*)",
-            "dest": "/"
+            "dest": "/index.html"
         }
     ]
 }
