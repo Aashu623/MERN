@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   isAuthenticatedUser,
   authorizeRoles,
-} = require("../middleware/clerkAuth");
+} = require("../middleware/auth");
 const {
   newOrder,
   getSingleOrder,

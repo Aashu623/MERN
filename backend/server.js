@@ -1,7 +1,6 @@
 const app = require("./app");
 const cloudinary = require("cloudinary");
 const connectDatabase = require("./config/database");
-const { initializeClerk } = require("./config/clerk");
 
 // Handling UncaughtException.
 process.on("uncaughtException", (err) => {
@@ -17,9 +16,6 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 
 //connecting to database
 connectDatabase();
-
-// Initialize Clerk
-initializeClerk();
 
 //connecting to cloudinary
 cloudinary.config({

@@ -16,9 +16,15 @@ module.exports = (err, req, res, next) => {
         err = new ErrorHandler(message, 400);
     }
 
-    //Clerk authentication error
-    if (err.name === "ClerkError" || err.message?.includes("Clerk")) {
-        const message = `Authentication failed. Please try again.`;
+    //JWT authentication error
+    if (err.name === "JsonWebTokenError") {
+        const message = `Json Web Token is invalid, Try again `;
+        err = new ErrorHandler(message, 401);
+    }
+
+    //JWT EXPIRE error
+    if (err.name === "TokenExpiredError") {
+        const message = `Json Web Token is Expired, Try again `;
         err = new ErrorHandler(message, 401);
     }
 
