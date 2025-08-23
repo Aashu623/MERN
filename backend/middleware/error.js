@@ -34,6 +34,18 @@ module.exports = (err, req, res, next) => {
         err = new ErrorHandler(message, 401);
     }
 
+    //File upload error
+    if (err.code === 'LIMIT_FILE_SIZE') {
+        const message = `File size too large. Maximum size is 50MB.`;
+        err = new ErrorHandler(message, 413);
+    }
+
+    //Request entity too large error
+    if (err.message?.includes('request entity too large') || err.statusCode === 413) {
+        const message = `Request too large. Please reduce file size or try uploading fewer files.`;
+        err = new ErrorHandler(message, 413);
+    }
+
     res.status(err.statusCode).json({
         success: false,
         message: err.message

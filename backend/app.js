@@ -34,10 +34,17 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(fileUpload());
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+app.use(fileUpload({
+  limits: { fileSize: 50 * 1024 * 1024 }, // 50MB limit
+  useTempFiles: true,
+  tempFileDir: '/tmp/',
+  debug: false,
+  abortOnLimit: true,
+  responseOnLimit: 'File size limit has been reached',
+}));
 
 // app.use((req, res, next) => {
 //     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
